@@ -1,0 +1,217 @@
+[
+    {
+        "name": "PA-03",
+        "coordinates": {
+            "lat": 33.932131, 
+            "lng": -84.029834
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "1928-1363",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "3231-3048",
+                "name": "Gwinnett"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-04",
+        "coordinates": {
+            "lat": 33.9384985, 
+            "lng": -84.00534343
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "2057-1513",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "3233-3060",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-06",
+        "coordinates": {
+            "lat": 33.9541741598, 
+            "lng": -84.0410439507
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "5290-4139",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "3231-3048",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowBoundary": 0,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-07",
+        "coordinates": {
+            "lat": 33.9622324326, 
+            "lng": -84.0348388989
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "5291-4153",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "3231-3048",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowBoundary": 0,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-08",
+        "coordinates": {
+            "lat": 33.9850853383, 
+            "lng": -84.0447562125
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "5304-4218",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "3231-3048",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowBoundary": 0,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-11",
+        "coordinates": {
+            "lat": 34.005446, 
+            "lng": -84.025904
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "3207-2933",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "2563-2061",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowBoundary": 0,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    },
+    {
+        "name": "PA-12",
+        "coordinates": {
+            "lat": 34.016817703, 
+            "lng": -84.014862477
+        },
+        "analysisConfig": {
+            "flowChannel": {
+                "id": "5303-4204",
+                "name": "Flow Rate"
+            },
+            "rainChannel": {
+                "id": "2563-2061",
+                "name": "Rainfall"
+            },
+            "maxTotalRainAccumulationDuration": 360,
+            "rdii1Duration": 60,
+            "rdii2Duration": 1440,
+            "flowBoundary": 0,
+            "flowIntensityUnits": "MGD",
+            "rainfallUnits": "in",
+            "idf": {
+                "chartName": "Gwinnett County",
+                "returnPeriod": "years",
+                "intensities": [{
+                    "duration": 360,
+                    "values": [0.41, 0.49, 0.56, 0.67, 0.76, 0.85]
+                }]
+            }
+        }
+    }
+]
