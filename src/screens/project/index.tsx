@@ -1,27 +1,20 @@
-import 'react-responsive-modal/lib/react-responsive-modal.css';
 import * as React from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { IAppState } from '@store/state';
-import { IMainScreenState } from './models/main-screen-state';
 import {
-  ISelectSiteActionCreator,
-  ISelectRdiiStormEventActionCreator,
-  IShowSitesActionCreator,
-  selectSite,
-  selectRdiiStormEvent,
-  showSites,
+  showFlowPredictionForDay,
+  IShowFlowPredictionForDayActionCreator,
 } from './action-creators';
 import { IUiSettings } from '@business-logic/configuration/models/ui-settings';
+import { IProjectScreenState } from './models';
 
-interface IScreenProps extends IMainScreenState {
+interface IScreenProps extends IProjectScreenState {
   uiSettings: IUiSettings;
 }
 
 interface IDispatchProps {
-  showSites: IShowSitesActionCreator;
-  selectSite: ISelectSiteActionCreator;
-  selectRdiiStormEvent: ISelectRdiiStormEventActionCreator;
+  showFlowPredictionForDay: IShowFlowPredictionForDayActionCreator;
 }
 
 const MainScreen = (props: IScreenProps & IDispatchProps) =>
@@ -30,22 +23,24 @@ const MainScreen = (props: IScreenProps & IDispatchProps) =>
   </div>;
 
 const mapStateToProps = (state: IAppState): IScreenProps => {
-  return { ...state.mainScreenState, uiSettings: state.configuration.uiSettings };
+  return {
+    ...state.projectScreenState,
+    uiSettings: state.configuration.uiSettings,
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => {
   return bindActionCreators({
-    selectSite,
-    showSites,
-    selectRdiiStormEvent,
+    showFlowPredictionForDay,
   }, dispatch);
 };
 
-export { IMainScreenState } from './models/main-screen-state';
-export { mainScreenReducer, MainScreenActionsTypes } from './reducers';
+export { IProjectScreenState } from './models/project-screen-state';
+export { projectScreenReducer, ProjectScreenActionsTypes } from './reducers';
 export {
-  loadSitesSaga,
-  loadStormEventSaga,
+  loadFlowSaga,
+  loadRainfallSaga,
+  loadPredictionSaga,
 } from './sagas';
 
 export const MainScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(MainScreen);

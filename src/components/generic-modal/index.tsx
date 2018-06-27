@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import ResponsiveModal from 'react-responsive-modal';
 import { IAppState } from '@store/state';
 import { bindActionCreators, Dispatch } from 'redux';
-import { hideModal, IHideModalActionCreator } from './action-creators';
+import { hideGenericModal, IHideGenericModalActionCreator } from './action-creators';
 import { IModalState } from './model';
 
 interface IDispatchProps {
-  hideModal: IHideModalActionCreator;
+  hideModal: IHideGenericModalActionCreator;
 }
 
 const Modal = (props: IModalState & IDispatchProps) =>
@@ -28,14 +28,14 @@ const mapStateToProps = (state: IAppState): IModalState => {
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => {
   return bindActionCreators({
-    hideModal,
+    hideGenericModal,
   }, dispatch);
 };
 
 
-export const ModalContainer = connect<IModalState, {}, {}>(mapStateToProps, mapDispatchToProps)(Modal);
+export const GenericModalContainer = connect<IModalState, {}, {}>(mapStateToProps, mapDispatchToProps)(Modal);
 
-export { ShowModalAction, HideModalAction } from './actions';
+export { ShowGenericModalAction, HideGenericModalAction } from './actions';
 export { IModalState } from './model';
 export { ModalActionsTypes, modalContainerReducer } from './reducers';
 

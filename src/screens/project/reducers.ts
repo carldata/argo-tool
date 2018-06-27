@@ -1,22 +1,24 @@
 import * as _ from 'lodash';
 import * as actionTypes from './action-types';
 import {
-  SitesLoadStartedAction,
-  SitesLoadSucceededAction,
+  FlowLoadFailedAction,
+  FlowLoadSucceededAction,
 } from './actions';
-import { IMainScreenState } from './models/main-screen-state';
+import { IProjectScreenState } from './models/project-screen-state';
 
-const initialState: IMainScreenState = { sites: [] } as IMainScreenState;
+const initialState: IProjectScreenState = {
+  project: {
+    flowPredictions: []
+  },
+  selectedFlowPredictionIndex: -1,
+} as IProjectScreenState;
 
-export type MainScreenActionsTypes = SitesLoadStartedAction|
-                                     SitesLoadSucceededAction;
+export type ProjectScreenActionsTypes = FlowLoadFailedAction|
+                                        FlowLoadSucceededAction;
 
-export const mainScreenReducer = (state: IMainScreenState = initialState, action: MainScreenActionsTypes): IMainScreenState => {
+export const projectScreenReducer = (state: IProjectScreenState = initialState, action: ProjectScreenActionsTypes): IProjectScreenState => {
   switch (action.type) {
-    case actionTypes.SITES_LOAD_STARTED:
-      return { ...state, projects: [] } as IMainScreenState;
-    case actionTypes.SITES_LOAD_SUCCEEDED:
-      // return { ...state, sites: action.sites, mode: EnumViewState.Sites } as IMainScreenState;
+    case actionTypes.FLOW_LOAD_SUCCEEDED:
       return state;
     default:
       return state;

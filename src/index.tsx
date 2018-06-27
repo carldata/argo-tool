@@ -1,4 +1,5 @@
 import './scss/styles.scss';
+import 'react-responsive-modal/lib/react-responsive-modal.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
