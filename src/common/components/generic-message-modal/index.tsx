@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import ResponsiveModal from 'react-responsive-modal';
 import { IAppState } from '@store/state';
 import { bindActionCreators, Dispatch } from 'redux';
-import { hideGenericModal, IHideGenericMessageModalActionCreator } from './action-creators';
+import { hideGenericMessageModal, IHideGenericMessageModalActionCreator } from './action-creators';
 import { IGenericMessageModalState } from './model';
 
 interface IDispatchProps {
-  hideModal: IHideGenericMessageModalActionCreator;
+  hideGenericMessageModal: IHideGenericMessageModalActionCreator;
 }
 
 const Modal = (props: IGenericMessageModalState & IDispatchProps) =>
@@ -16,7 +16,7 @@ const Modal = (props: IGenericMessageModalState & IDispatchProps) =>
       little
       open={props.show}
       showCloseIcon={props.allowClose}
-      onClose={() => props.hideModal() }>
+      onClose={() => props.hideGenericMessageModal() }>
       <h2>{props.header}</h2>
       <p>{props.title}</p>
     </ResponsiveModal>
@@ -28,7 +28,7 @@ const mapStateToProps = (state: IAppState): IGenericMessageModalState => {
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => {
   return bindActionCreators({
-    hideGenericModal,
+    hideGenericMessageModal,
   }, dispatch);
 };
 
