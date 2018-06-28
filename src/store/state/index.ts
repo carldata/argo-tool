@@ -1,10 +1,10 @@
 import { IConfigurationState } from '@business-logic/configuration';
-import { IModalState } from '@components/modal';
+import { IGenericModalState } from '@components/generic-modal';
 import { ISelectProjectScreenState } from '@screens/select-project';
 import { IProjectScreenState } from '@screens/project';
 
 export interface IAppState {
-  modalState: IModalState;
+  modalState: IGenericModalState;
   configuration: IConfigurationState;
   selectProjectScreenState: ISelectProjectScreenState;
   projectScreenState: IProjectScreenState;

@@ -4,20 +4,20 @@ import { IAppState } from './state';
 import { IConfigurationState, ConfigurationActionTypes, configurationReducer } from '@business-logic/configuration';
 import { IProjectScreenState } from '@screens/project/.';
 import { mainSaga } from '@store/main-saga';
-import { IModalState, ModalActionsTypes, modalContainerReducer } from '@components/modal';
+import { IGenericModalState, GenericModalActionsTypes, genericModalContainerReducer } from '@components/generic-modal';
 import { ISelectProjectScreenState } from '@screens/select-project';
 import { SelectProjectScreenActionsTypes, selectProjectScreenReducer } from '@screens/select-project/reducers';
 import { projectScreenReducer, ProjectScreenActionsTypes } from '@screens/project/reducers';
 
 interface ICombinedReducers extends ReducersMapObject {
-  modalState: (state: IModalState, action: ModalActionsTypes) => IModalState;
+  modalState: (state: IGenericModalState, action: GenericModalActionsTypes) => IGenericModalState;
   configuration: (state: IConfigurationState, action: ConfigurationActionTypes) => IConfigurationState;
   selectProjectScreenState: (state: ISelectProjectScreenState, action: SelectProjectScreenActionsTypes) => ISelectProjectScreenState;
   projectScreenState: (state: IProjectScreenState, action: ProjectScreenActionsTypes) => IProjectScreenState;
 }
 
 const reducerMapObject: ICombinedReducers = {
-  modalState: modalContainerReducer,
+  modalState: genericModalContainerReducer,
   configuration: configurationReducer,
   selectProjectScreenState: selectProjectScreenReducer,
   projectScreenState: projectScreenReducer,
