@@ -6,14 +6,10 @@ const initialState: IConfigurationState = {
   uiSettings: {
     dateFormat: 'YYYY MM DD',
     decimalDigits: 1,
-    googleApiKey: '',
   },
-  endpoint: {
-    urls: {
-      envelope: '',
-      sites: '',
-      rdiiStormEvent: '',
-    },
+  endpointSettings: {
+    appId: '',
+    flowWorksHttp: '',
     dateFormat: '',
   },
 } as IConfigurationState;

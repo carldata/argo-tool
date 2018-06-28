@@ -1,4 +1,4 @@
-export { IConfigurationState } from './models/state';
+export { IConfigurationState, IEndpointSettings } from './models/state';
 export { IUiSettings } from './models/ui-settings';
 export { getConfiguarionSaga } from './sagas';
 export { ConfigurationActionTypes, configurationReducer } from './reducers';

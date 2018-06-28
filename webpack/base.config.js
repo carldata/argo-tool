@@ -78,11 +78,12 @@ module.exports = {
     ],
     extensions: [".js", ".ts", ".json", ".jsx", ".tsx", ".css", ".scss"],
     alias: {
-      "@business-logic": path.resolve(__dirname, '../src/business-logic'),
-      "@components": path.resolve(__dirname, '../src/components'),
-      "@models": path.resolve(__dirname, '../src/models'),
+      "@business-logic": path.resolve(__dirname, '../src/common/business-logic'),
+      "@components": path.resolve(__dirname, '../src/common/components'),
+      "@models": path.resolve(__dirname, '../src/common/models'),
       "@store":  path.resolve(__dirname, '../src/store'),
-      "@screens": path.resolve(__dirname, '../src/screens')
+      "@screens": path.resolve(__dirname, '../src/screens'),
+      "@routes":  path.resolve(__dirname, '../src/routes')
     }
   },
   target: "web"

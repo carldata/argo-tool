@@ -16,7 +16,3 @@ export class FlowLoadStartedAction implements Action {
 export class FlowLoadSucceededAction implements Action {
   public readonly type = actionTypes.FLOW_LOAD_SUCCEEDED;
 }
-
-export class FlowLoadFailedAction implements Action {
-  public readonly type = actionTypes.FLOW_LOAD_FAILED;
-}

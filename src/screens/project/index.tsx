@@ -8,6 +8,7 @@ import {
 } from './action-creators';
 import { IUiSettings } from '@business-logic/configuration/models/ui-settings';
 import { IProjectScreenState } from './models';
+import { GenericMessageModalContainer } from '@components/generic-message-modal';
 
 interface IScreenProps extends IProjectScreenState {
   uiSettings: IUiSettings;
@@ -17,9 +18,10 @@ interface IDispatchProps {
   showFlowPredictionForDay: IShowFlowPredictionForDayActionCreator;
 }
 
-const MainScreen = (props: IScreenProps & IDispatchProps) =>
+const ProjectScreen = (props: IScreenProps & IDispatchProps) =>
   <div>
     <h5>Project Screen</h5>
+    <GenericMessageModalContainer />
   </div>;
 
 const mapStateToProps = (state: IAppState): IScreenProps => {
@@ -43,4 +45,4 @@ export {
   loadPredictionSaga,
 } from './sagas';
 
-export const MainScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(MainScreen);
+export const ProjectScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(ProjectScreen);

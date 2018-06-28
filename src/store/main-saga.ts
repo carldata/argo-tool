@@ -1,16 +1,12 @@
 import { fork } from 'redux-saga/effects';
-import { initializationSaga } from '@business-logic/sagas';
+import { getConfiguarionSaga } from '@business-logic/configuration/sagas';
 import {
-  loadFlowSaga,
-  loadPredictionSaga,
-  loadRainfallSaga,
-} from '@screens/project/sagas';
+  loadProjectSaga,
+} from '@screens/select-project/sagas';
 
 export function* mainSaga() {
   yield [
-    fork(initializationSaga),
-    fork(loadFlowSaga),
-    fork(loadPredictionSaga),
-    fork(loadRainfallSaga),
+    fork(getConfiguarionSaga),
+    fork(loadProjectSaga),
   ];
 }
