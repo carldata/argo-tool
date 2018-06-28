@@ -1,0 +1,13 @@
+{
+  "endpoint": {
+    "dateFormat":  "YYYY-MM-DD",
+    "urls": {
+      "sites": "sites.json",
+      "rdiiStormEvent": "storm-event.json"
+    }
+  },
+  "uiSettings": {
+    "dateFormat": "DD MMM YYYY",
+    "decimalDigits": 1
+  }
+}

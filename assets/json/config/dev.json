@@ -1,0 +1,13 @@
+{
+  "endpoint": {
+    "dateFormat":  "YYYY-MM-DD",
+    "urls": {
+      "sites": "sites.json",
+      "rdiiStormEvent": "http://13.77.168.238/iandi/rdii"  
+    }
+  },
+  "uiSettings": {
+    "dateFormat": "DD MMM YYYY",
+    "decimalDigits": 1
+  }
+}

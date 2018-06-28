@@ -1,0 +1,77 @@
+@import './fw-bootstrap.css';
+
+$panels-height-offset-px: 310;
+
+$rdii-width-px: 600;
+$rdii-height-px: 600;
+$rdii-margin-left-px: 40;
+$rdii-margin-right-px: 10;
+$rdii-margin-top-px: 35;
+$rdii-margin-bottom-px: 35;
+$rdii-rainfall-to-signals-height-ratio: 0.25;
+$rdii-flow-color: rgb(216, 22, 22);
+$rdii-rdii1-color: rgb(25, 71, 86);
+$rdii-rdii2-color: rgb(48, 131, 159);
+$rdii-rdii3-color: rgb(68, 199, 243);
+$rdii-dwp-color: rgb(210, 144, 21);
+$rdii-rainfall-color: rgb(35, 35, 208);
+
+%clickable {
+  cursor: pointer;
+}
+
+.clickable {
+  @extend %clickable;
+}
+
+%info-box-site-label {
+  @extend %clickable;
+  opacity: 0.5;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  font-size: 21px;
+  font-weight: bolder;
+  background-color: argb(ff, 0, 0, 0);
+  color: red;
+  white-space: nowrap;
+}
+
+.info-box-site-label {
+  @extend %info-box-site-label;
+}
+
+.info-box-site-label-selected {
+  @extend %info-box-site-label;
+  opacity: 1;
+  color: #790D0A;
+  text-decoration-line: underline;
+}
+
+.site-details-panel {
+  overflow-y: auto;
+}
+
+.infoBox::-webkit-scrollbar-thumb {
+  all: unset;
+}
+
+.infoBox::-webkit-scrollbar-track {
+  all: unset;
+}
+
+:export {
+  panelsHeightOffsetPx: $panels-height-offset-px;
+  rdiiWidthPx: $rdii-width-px;
+  rdiiHeightPx: $rdii-height-px;
+  rdiiMarginLeftPx: $rdii-margin-left-px;
+  rdiiMarginRightPx: $rdii-margin-right-px;
+  rdiiMarginTopPx: $rdii-margin-top-px;
+  rdiiMarginBottomPx: $rdii-margin-bottom-px;
+  rdiiRainfallToSignalsHeightRatio : $rdii-rainfall-to-signals-height-ratio;
+  rdiiFlowColor: $rdii-flow-color;
+  rdiiRdii1Color: $rdii-rdii1-color;
+  rdiiRdii2Color: $rdii-rdii2-color;
+  rdiiRdii3Color: $rdii-rdii3-color;
+  rdiiDwpColor: $rdii-dwp-color;
+  rdiiRainfallColor: $rdii-rainfall-color;
+}
