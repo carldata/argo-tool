@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import * as actionTypes from './action-types';
 import {
-  FlowLoadFailedAction,
   FlowLoadSucceededAction,
 } from './actions';
 import { IProjectScreenState } from './models/project-screen-state';
@@ -13,8 +12,7 @@ const initialState: IProjectScreenState = {
   selectedFlowPredictionIndex: -1,
 } as IProjectScreenState;
 
-export type ProjectScreenActionsTypes = FlowLoadFailedAction|
-                                        FlowLoadSucceededAction;
+export type ProjectScreenActionsTypes = FlowLoadSucceededAction;
 
 export const projectScreenReducer = (state: IProjectScreenState = initialState, action: ProjectScreenActionsTypes): IProjectScreenState => {
   switch (action.type) {

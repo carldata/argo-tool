@@ -14,7 +14,3 @@ export class ProjectLoadStartedAction implements Action {
 export class ProjectLoadSucceededAction implements Action {
   public readonly type = actionTypes.PROJECT_LOAD_SUCCEEDED;
 }
-
-export class ProjectLoadFailedAction implements Action {
-  public readonly type = actionTypes.PROJECT_LOAD_FAILED;
-}

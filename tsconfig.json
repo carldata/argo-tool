@@ -13,14 +13,16 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@business-logic/*": ["./src/business-logic/*"],
-      "@components/*": ["./src/components/*"],
-      "@models/*": ["./src/models/*"],
+      "@business-logic/*": ["./src/common/business-logic/*"],
+      "@components/*": ["./src/common/components/*"],
+      "@models/*": ["./src/common/models/*"],
       "@store/*": ["./src/store/*"],
-      "@screens/*": ["./src/screens/*"]
+      "@screens/*": ["./src/screens/*"],
+      "@routes": ["./src/routes"]
     }
   },
   "exclude": [
+    "__tests__",
     "dist",
     "node_modules"
   ]

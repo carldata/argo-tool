@@ -1,4 +1,4 @@
-import { IStormEvent } from '../../src/components/prediction-chart/models/storm-event';
+import { IStormEvent } from '../../src/common/components/prediction-chart/models/storm-event';
 import { rdiiStormEventSchema } from '../../src/screens/project/schemas/rdii';
 import { ValidationError } from 'yup';
 

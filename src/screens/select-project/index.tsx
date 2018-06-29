@@ -6,6 +6,7 @@ import { ISelectProjectScreenState } from './models/select-project-screen-state'
 import {
   ISelectProjectActionCreator, selectProject,
 } from './action-creators';
+import { GenericMessageModalContainer } from '@components/generic-message-modal';
 
 interface IScreenProps extends ISelectProjectScreenState {
 }
@@ -14,9 +15,16 @@ interface IDispatchProps {
   selectProject: ISelectProjectActionCreator;
 }
 
-const MainScreen = (props: IScreenProps & IDispatchProps) =>
+const SelectProjectScreen = (props: IScreenProps & IDispatchProps) =>
   <div>
-    <h5>Project Screen</h5>
+    <h5>Select project screen</h5>
+    <input
+      type='button'
+      className='btn primary'
+      value='Navigate to project page !'
+      onClick={() => props.selectProject('to_be_changed')}
+    />
+    <GenericMessageModalContainer />
   </div>;
 
 const mapStateToProps = (state: IAppState): IScreenProps => {
@@ -35,4 +43,4 @@ export {
   loadProjectSaga,
 } from './sagas';
 
-export const MainScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(MainScreen);
+export const SelectProjectScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(SelectProjectScreen);
