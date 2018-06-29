@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "backless-development",
+        "baseUrl": "./",
+        "paths": {
+            "@business-logic/*": ["./src/common/business-logic/*"],
+            "@components/*": ["./src/common/components/*"],
+            "@models/*": ["./src/common/models/*"],
+            "@store/*": ["./src/store/*"],
+            "@screens/*": ["./src/screens/*"],
+            "@routes": ["./src/routes"]
+        },
+        "jsx": "react",
+        "lib": [
+            "es5",
+            "es6",
+            "dom",
+            "esnext"
+        ]
+    },
+    "include": [
+        "src/backless-dev-server/**/*"
+    ],
+    "exclude": [
+        "node_modules/**/*",
+        "src/backless-dev-server/copy-static-assets.ts"
+    ]
+}

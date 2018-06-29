@@ -8,6 +8,13 @@ cd argo-tool
 npm i
 ```
 
+## Backless development
+
+Install the latest version of TypeScript:
+```
+npm i typescript -g
+```
+
 # Integrations
 
 ## Building docker images

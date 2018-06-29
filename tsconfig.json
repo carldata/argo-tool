@@ -24,6 +24,7 @@
   "exclude": [
     "__tests__",
     "dist",
+    "./src/backless-dev-server/**/*",
     "node_modules"
   ]
 }

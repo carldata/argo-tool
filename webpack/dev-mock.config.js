@@ -4,7 +4,7 @@ const base = require('./base.config.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const files = [
-  { from: './assets/json/config/dev.json', to: 'configuration.json', dot: true }
+  { from: './assets/json/config/dev-mock.json', to: 'configuration.json', dot: true }
 ];
 
 module.exports = merge(base, {
