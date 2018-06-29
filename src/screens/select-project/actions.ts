@@ -7,10 +7,10 @@ export class ProjectSelectedAction implements Action {
   constructor(public projectId: string) { } 
 }
 
-export class ProjectLoadStartedAction implements Action {
-  public readonly type = actionTypes.PROJECT_LOAD_STARTED;
+export class ProjectConfigurationLoadStartedAction implements Action {
+  public readonly type = actionTypes.PROJECT_CONFIGURATION_LOAD_STARTED;
 }
 
-export class ProjectLoadSucceededAction implements Action {
-  public readonly type = actionTypes.PROJECT_LOAD_SUCCEEDED;
+export class ProjectConfigurationLoadSucceededAction implements Action {
+  public readonly type = actionTypes.PROJECT_CONFIGURATION_LOAD_SUCCEEDED;
 }
