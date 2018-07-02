@@ -6,9 +6,9 @@ import {
 import { IProjectScreenState } from './models/project-screen-state';
 
 const initialState: IProjectScreenState = {
-  project: {
-    flowPredictions: []
-  },
+  projectConfiguration: [],
+  projectCalculation: [],
+  selectedDate: new Date(),
   selectedFlowPredictionIndex: -1,
 } as IProjectScreenState;
 
