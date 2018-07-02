@@ -2,7 +2,7 @@
   "endpointSettings": {
     "dateFormat":  "YYYY-MM-DD",
     "appId": "argo-tool-20180628",
-    "flowWorksHttp": "http://13.77.168.238"
+    "flowWorksHttp": "http://localhost:3900" 
   },
   "uiSettings": {
     "dateFormat": "DD MMM YYYY",
