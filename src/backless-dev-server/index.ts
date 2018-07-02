@@ -14,10 +14,9 @@ app.get('/config/:appId', (req, res) => {
   returnMockedJSON(res, 'assets/project-configuration.json');
 });
 
-app.get('/config/:appId:/:projectId:', (req, res) => {
+app.get('/config/:appId/:projectId', (req, res) => {
   returnMockedJSON(res, 'assets/project-configuration.json');
 });
-
 
 app.get('/data/channel/:channelId/data', (req, res) => {
   returnMockedCsv(res, `assets/data-${req.params.channelId}.csv`);
