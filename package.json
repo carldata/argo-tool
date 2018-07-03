@@ -11,7 +11,9 @@
     "test": "jest",
     "bd-server-build": "tsc -p tsconfig-server.json && npm run bd-server-copy-static-assets",
     "bd-server-serve": "cd backless-development && node index.js",
-    "bd-server-copy-static-assets": "ts-node ./src/backless-dev-server/copy-static-assets.ts"
+    "bd-server-copy-static-assets": "ts-node ./src/backless-dev-server/copy-static-assets.ts",
+    "storybook": "start-storybook -p 6006 -s ./assets",
+    "build-storybook": "build-storybook"
   },
   "license": "MIT",
   "jest": {
@@ -52,6 +54,10 @@
     "yup": "0.25.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "@storybook/react": "^4.0.0-alpha.10",
     "@types/jest": "^21.1.8",
     "@types/js-cookie": "2.1.0",
     "@types/lodash": "4.14.105",
@@ -64,10 +70,13 @@
     "@types/react-router-dom": "^4.2.7",
     "@types/redux-saga": "0.10.5",
     "@types/yup": "0.24.4",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
     "copy-webpack-plugin": "4.5.1",
     "html-webpack-plugin": "3.0.7",
     "jest": "^21.2.1",
     "node-sass": "^4.7.2",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "sass-loader": "^6.0.6",
     "shelljs": "^0.8.2",
     "ts-loader": "4.1.0",
@@ -76,7 +85,7 @@
     "typescript": "^2.8.3",
     "uglifyjs-webpack-plugin": "1.2.4",
     "url-loader": "^0.5.9",
-    "webpack": "4.1.1",
+    "webpack": "4.6.0",
     "webpack-bundle-analyzer": "2.11.1",
     "webpack-cli": "2.0.12",
     "webpack-dev-server": "3.1.1",

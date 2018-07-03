@@ -3,11 +3,11 @@ import * as React from 'react';
 import * as d3 from 'd3';
 import { IResizableScss, withFitToParent, IUnixTimePoint } from 'time-series-scroller';
 import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
-import { convertToDateSignal } from './calculations';
-import { plotPredictions } from './plotting/prediction-plotting';
-import { IStormEvent } from './models/storm-event';
-import { plotLegend } from './plotting/legend-plotting';
-import { ISample } from './models/signal-sample';
+import { convertToDateSignal } from '@components/prediction-chart/calculations';
+import { plotPredictions } from '@components/prediction-chart/plotting/prediction-plotting';
+import { IStormEvent } from '@components/prediction-chart/models/storm-event';
+import { plotLegend } from '@components/prediction-chart/plotting/legend-plotting';
+import { ISample } from '@components/prediction-chart/models/signal-sample';
 
 export { IStormEvent };
 
