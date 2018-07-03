@@ -15,6 +15,22 @@ Install the latest version of TypeScript:
 npm i typescript -g
 ```
 
+## Storybook support
+
+**First installation**
+
+```
+npm i -g @storybook/cli@alpha
+```
+see also https://github.com/storybooks/storybook/issues/3044
+
+**Running**
+
+```
+npm run storybook
+```
+then open http://localhost:6006/ to browse your stories !
+
 # Integrations
 
 ## Building docker images

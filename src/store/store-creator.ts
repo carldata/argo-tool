@@ -1,9 +1,9 @@
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import { ReducersMapObject, combineReducers, compose, Store, createStore, applyMiddleware } from 'redux';
-import { IAppState } from './state';
+import { IAppState } from '@store/state';
 import { IConfigurationState, ConfigurationActionTypes, configurationReducer } from '@business-logic/configuration';
-import { IProjectScreenState } from '@screens/project/.';
+import { IProjectScreenState } from '@screens/project';
 import { mainSaga } from '@store/main-saga';
 import { IGenericMessageModalState, GenericModalActionsTypes, genericMessageModalContainerReducer } from '@components/generic-message-modal';
 import { ISelectProjectScreenState } from '@screens/select-project';
