@@ -8,6 +8,7 @@ import { plotPredictions } from '@components/prediction-chart/plotting/predictio
 import { IStormEvent } from '@components/prediction-chart/models/storm-event';
 import { plotLegend } from '@components/prediction-chart/plotting/legend-plotting';
 import { ISample } from '@components/prediction-chart/models/signal-sample';
+import { IPrediction } from '@components/prediction-chart/models/prediction';
 
 export { IStormEvent };
 
@@ -27,6 +28,7 @@ export interface IRdiiScss extends IResizableScss {
 
 export interface IRdiiChartProps {
   stormEvent: IStormEvent<Date>;
+  prediction: IPrediction<Date>;
   flowIntensityUnits: FlowIntensityUnits;
   rainfallUnits: RainfallUnits;
   scss: IRdiiScss;
