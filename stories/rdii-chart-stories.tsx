@@ -8,7 +8,7 @@ storiesOf('RDII Chart', module)
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
-        dwpColor: 'green',
+        predictionColor: 'green',
         flowColor: 'blue',
         widthPx: 1200,
         heightPx: 600,
@@ -18,9 +18,6 @@ storiesOf('RDII Chart', module)
         marginRightPx: 50,
         rainfallColor: 'blue',
         rainfallToSignalsHeightRatio: 0.45,
-        rdii1Color: 'orange',
-        rdii2Color: 'brown',
-        rdii3Color: 'black',
       }}
       url='start-nov-2013.json' />)
   .add('Mid of August 2015', () =>
@@ -28,7 +25,7 @@ storiesOf('RDII Chart', module)
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
-        dwpColor: 'red',
+        predictionColor: 'red',
         flowColor: 'blue',
         widthPx: 600,
         heightPx: 600,
@@ -38,19 +35,16 @@ storiesOf('RDII Chart', module)
         marginRightPx: 50,
         rainfallColor: 'blue',
         rainfallToSignalsHeightRatio: 0.45,
-        rdii1Color: 'orange',
-        rdii2Color: 'brown',
-        rdii3Color: 'black',
       }}
       url='mid-aug-2015.json' />)
-  .add('dupa', () => {
+  .add('Prediction', () => {
 
 
     return <RdiiChartWrapper
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
-        dwpColor: 'yellow',
+        predictionColor: 'yellow',
         flowColor: 'green',
         widthPx: 600,
         heightPx: 600,
@@ -60,10 +54,6 @@ storiesOf('RDII Chart', module)
         marginRightPx: 50,
         rainfallColor: 'blue',
         rainfallToSignalsHeightRatio: 0.45,
-        rdii1Color: 'orange',
-        rdii2Color: 'brown',
-        rdii3Color: 'black',
       }}
-      urlPredictions='mid-aug-2015prediction.json'
-      url='mid-aug-2015.json' />;
+      url='mid-aug-2015prediction.json' />;
   });

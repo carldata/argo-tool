@@ -1,43 +1,36 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import * as d3 from 'd3';
-import { IResizableScss, withFitToParent, IUnixTimePoint } from 'time-series-scroller';
+import { IResizableScss, withFitToParent } from 'time-series-scroller';
 import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
 import { convertToDateSignal } from '@components/prediction-chart/calculations';
-import { plotPredictions } from '@components/prediction-chart/plotting/prediction-plotting';
-import { IStormEvent } from '@components/prediction-chart/models/storm-event';
 import { plotLegend } from '@components/prediction-chart/plotting/legend-plotting';
 import { ISample } from '@components/prediction-chart/models/signal-sample';
 import { IPrediction } from '@components/prediction-chart/models/prediction';
 
-export { IStormEvent };
+export { IPrediction };
 
-export interface IRdiiScss extends IResizableScss {
+export interface IPredictionScss extends IResizableScss {
   marginLeftPx: number;
   marginRightPx: number;
   marginTopPx: number;
   marginBottomPx: number;
   rainfallToSignalsHeightRatio: number;
   flowColor: string;
-  rdii1Color: string;
-  rdii2Color: string;
-  rdii3Color: string;
-  dwpColor: string;
+  predictionColor: string;
   rainfallColor: string;
 }
 
 export interface IRdiiChartProps {
-  stormEvent: IStormEvent<Date>;
   prediction: IPrediction<Date>;
   flowIntensityUnits: FlowIntensityUnits;
   rainfallUnits: RainfallUnits;
-  scss: IRdiiScss;
+  scss: IPredictionScss;
   refCallback?: (ref: any) => void;
 }
 
 class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
   private svgRef: SVGElement;
-  private strokeOpacity: number = 0;
 
   constructor(props: IRdiiChartProps) {
     super(props);
@@ -58,12 +51,12 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
 
     const time = d3.scaleTime()
       .range([0, width])
-      .domain(d3.extent(this.props.stormEvent.index));
+      .domain(d3.extent(this.props.prediction.index));
 
-    const se = this.props.stormEvent;
+    const se = this.props.prediction;
 
-    const yMin = _.min(_.concat(se.dwp, se.flow, se.rdii1, se.rdii2, se.rdii3));
-    const yMax = _.max(_.concat(se.dwp, se.flow, se.rdii1, se.rdii2, se.rdii3));
+    const yMin = _.min(_.concat(se.prediction, se.flow));
+    const yMax = _.max(_.concat(se.prediction, se.flow));
 
     const flowY = d3.scaleLinear()
       .range([(1.0 - this.props.scss.rainfallToSignalsHeightRatio) * height, 0])
@@ -78,10 +71,7 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
       .y((d: ISample<Date>) => flowY(d.value));
 
     const flowData = convertToDateSignal(se.index, se.flow);
-    const rdii1Data = convertToDateSignal(se.index, se.rdii1);
-    const rdii2Data = convertToDateSignal(se.index, se.rdii2);
-    const rdii3Data = convertToDateSignal(se.index, se.rdii3);
-    const dryWeatherPatternFlowData = convertToDateSignal(se.index, se.dwp);
+    const predictionData = convertToDateSignal(se.index, se.prediction);
     const rainfallData = convertToDateSignal(se.index, se.rainfall);
 
     singalsG
@@ -103,21 +93,11 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
 
     singalsG
       .append('path')
-      .datum(dryWeatherPatternFlowData)
-      .attr('stroke', this.props.scss.dwpColor)
+      .datum(predictionData)
+      .attr('stroke', this.props.scss.predictionColor)
       .attr('stroke-width', 2)
       .attr('fill', 'none')
       .attr('d', line);
-
-    if (!_.isEmpty(rdii1Data)) {
-      plotPredictions(singalsG, rdii1Data, this.props.scss.rdii1Color, line, flowY, time);
-    }
-    if (!_.isEmpty(rdii2Data)) {
-      plotPredictions(singalsG, rdii2Data, this.props.scss.rdii2Color, line, flowY, time);
-    }
-    if (!_.isEmpty(rdii3Data)) {
-      plotPredictions(singalsG, rdii3Data, this.props.scss.rdii3Color, line, flowY, time);
-    }
 
     rainG
       .append('g')
@@ -151,7 +131,7 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
       .attr('height', (d: ISample<Date>) => rainY(d.value))
       .attr('fill', this.props.scss.rainfallColor);
 
-    plotLegend(g, this.props.scss, !_.isEmpty(this.props.stormEvent.rdii2), !_.isEmpty(this.props.stormEvent.rdii3));
+    plotLegend(g, this.props.scss);
   }
 
   private plotChart = () => {
