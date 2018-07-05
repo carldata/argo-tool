@@ -12,7 +12,7 @@ const dateFromToSchema = object({
 export const rdiiStormEventSchema = object({
   index: array()
     .required(),
-  dwp: array()
+  prediction: array()
     .of(number())
     .required(),
   flow: array()
@@ -21,29 +21,22 @@ export const rdiiStormEventSchema = object({
   rainfall: array()
     .of(number())
     .required(),
-  rdii1: array()
-    .of(number())
-    .required(),
-  rdii2: array()
-    .of(number()),
-  rdii3: array()
-    .of(number()),
 })
 .test('index and flow arrays have the same length',
       null,
-      (rdiiStormEvent: IPrediction<string>) =>
-      _.isArray(rdiiStormEvent.index) &&
-      _.isArray(rdiiStormEvent.flow) &&
-      (rdiiStormEvent.index.length === rdiiStormEvent.flow.length))
+      (prediction: IPrediction<string>) =>
+      _.isArray(prediction.index) &&
+      _.isArray(prediction.flow) &&
+      (prediction.index.length === prediction.flow.length))
 .test('index and prediction arrays have the same length',
       null,
-      (rdiiStormEvent: IPrediction<string>) =>
-      _.isArray(rdiiStormEvent.index) &&
-      (!_.isArray(rdiiStormEvent.prediction)) ||
-       ((_.isArray(rdiiStormEvent.prediction) && (rdiiStormEvent.index.length === rdiiStormEvent.flow.length))))
+      (prediction: IPrediction<string>) =>
+      _.isArray(prediction.index) &&
+      (!_.isArray(prediction.prediction)) ||
+       ((_.isArray(prediction.prediction) && (prediction.index.length === prediction.flow.length))))
 .test('index and rainfall arrays have the same length',
       null,
-      (rdiiStormEvent: IPrediction<string>) =>
-      _.isArray(rdiiStormEvent.index) &&
-      _.isArray(rdiiStormEvent.rainfall) &&
-      (rdiiStormEvent.index.length === rdiiStormEvent.rainfall.length))
+      (prediction: IPrediction<string>) =>
+      _.isArray(prediction.index) &&
+      _.isArray(prediction.rainfall) &&
+      (prediction.index.length === prediction.rainfall.length))
