@@ -40,6 +40,7 @@
     "express": "^4.16.3",
     "lodash": "^4.17.4",
     "react": "^15.5.4",
+    "react-data-grid": "^4.0.7",
     "react-dom": "^15.5.4",
     "react-mathjax": "0.1.1",
     "react-redux": "^5.0.5",
@@ -54,6 +55,7 @@
     "yup": "0.25.1"
   },
   "devDependencies": {
+    "@types/react-data-grid": "^2.0.11",
     "@storybook/addon-actions": "^3.4.8",
     "@storybook/addon-links": "^3.4.8",
     "@storybook/addons": "^3.4.8",
