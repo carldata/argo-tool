@@ -43,6 +43,6 @@ storiesOf('Calculations table story', module)
         rainfallChannelId: '10026-451',
         rainfallChannelName: 'Rainfall Mocked C',
       } as ICalculations]}
-      selectedCalculationIndex={1}
+      rowClicked={(rowIndex: number) => console.log(`Clicked index ${rowIndex}`)}
     />,
   );

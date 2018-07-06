@@ -3,7 +3,7 @@ import { ICalculations } from '@screens/project/models';
 
 export interface ICalculationsTableProps {
   calculations: ICalculations[];
-  selectedCalculationIndex: number;
+  rowClicked: (index: number) => void;
 }
 
 export const CalculationsTable = (props: ICalculationsTableProps) =>
