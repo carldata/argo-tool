@@ -1,7 +1,7 @@
 import { D3LegendGridLayout, ID3LegendConfig } from '@components/auxiliary/d3-legend-grid-layout';
-import { IRdiiScss } from '@components/prediction-chart';
+import { IPredictionScss } from '@components/prediction-chart';
 
-export const plotLegend = (rootElement, rdiiScss: IRdiiScss, containsRdii2: boolean, containsRdii3: boolean) => {
+export const plotLegend = (rootElement, rdiiScss: IPredictionScss) => {
   const gridLayout = new D3LegendGridLayout({
     columns: 5,
     rows: 1,
@@ -28,22 +28,7 @@ export const plotLegend = (rootElement, rdiiScss: IRdiiScss, containsRdii2: bool
       case 2:
         return {
           ...indices,
-          gElementAttached: gridLayout.circleWithLabel(rdiiScss.dwpColor, true, 'Dry Weather Pattern'),
-        };
-      case 3:
-        return {
-          ...indices,
-          gElementAttached: gridLayout.circleWithLabel(rdiiScss.rdii1Color, true, 'RDII 1'),
-        };
-      case 4:
-        return {
-          ...indices,
-          gElementAttached: containsRdii2 ? gridLayout.circleWithLabel(rdiiScss.rdii2Color, true, 'RDII 2') : null,
-        };
-      case 5:
-        return {
-          ...indices,
-          gElementAttached: containsRdii3 ? gridLayout.circleWithLabel(rdiiScss.rdii3Color, true, 'RDII 3') : null,
+          gElementAttached: gridLayout.circleWithLabel(rdiiScss.predictionColor, true, 'Prediction'),
         };
       default:
         return {

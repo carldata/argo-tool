@@ -8,19 +8,16 @@ storiesOf('RDII Chart', module)
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
-          dwpColor: 'green',
-          flowColor: 'blue',
-          widthPx: 1200,
-          heightPx: 600,
-          marginBottomPx: 50,
-          marginTopPx: 50,
-          marginLeftPx: 50,
-          marginRightPx: 50,
-          rainfallColor: 'blue',
-          rainfallToSignalsHeightRatio: 0.45,
-          rdii1Color: 'orange',
-          rdii2Color: 'brown',
-          rdii3Color: 'black',
+        predictionColor: 'green',
+        flowColor: 'blue',
+        widthPx: 1200,
+        heightPx: 600,
+        marginBottomPx: 50,
+        marginTopPx: 50,
+        marginLeftPx: 50,
+        marginRightPx: 50,
+        rainfallColor: 'blue',
+        rainfallToSignalsHeightRatio: 0.45,
       }}
       url='start-nov-2013.json' />)
   .add('Mid of August 2015', () =>
@@ -28,18 +25,35 @@ storiesOf('RDII Chart', module)
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
-          dwpColor: 'red',
-          flowColor: 'blue',
-          widthPx: 600,
-          heightPx: 600,
-          marginBottomPx: 50,
-          marginTopPx: 50,
-          marginLeftPx: 50,
-          marginRightPx: 50,
-          rainfallColor: 'blue',
-          rainfallToSignalsHeightRatio: 0.45,
-          rdii1Color: 'orange',
-          rdii2Color: 'brown',
-          rdii3Color: 'black',
+        predictionColor: 'red',
+        flowColor: 'blue',
+        widthPx: 600,
+        heightPx: 600,
+        marginBottomPx: 50,
+        marginTopPx: 50,
+        marginLeftPx: 50,
+        marginRightPx: 50,
+        rainfallColor: 'blue',
+        rainfallToSignalsHeightRatio: 0.45,
       }}
-      url='mid-aug-2015.json' />);
+      url='mid-aug-2015.json' />)
+  .add('Prediction', () => {
+
+
+    return <RdiiChartWrapper
+      flowIntensityUnits={'gpm'}
+      rainfallUnits={'in'}
+      scss={{
+        predictionColor: 'yellow',
+        flowColor: 'green',
+        widthPx: 600,
+        heightPx: 600,
+        marginBottomPx: 50,
+        marginTopPx: 50,
+        marginLeftPx: 50,
+        marginRightPx: 50,
+        rainfallColor: 'blue',
+        rainfallToSignalsHeightRatio: 0.45,
+      }}
+      url='mid-aug-2015prediction.json' />;
+  });
