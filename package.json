@@ -28,8 +28,7 @@
     "testMatch": [
       "**/__tests__/unit/**.(ts|tsx|js)",
       "**/__tests__/schemas/**.(ts|tsx|js)"
-    ],
-    "preset": "jest-puppeteer-preset"
+    ]
   },
   "dependencies": {
     "axios": "0.18.0",

@@ -10,6 +10,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/static-csv/:name', (req, res) => {
+  returnMockedCsv(res, `assets/csv/${req.params.name}`);
+});
+
 app.get('/config/:appId', (req, res) => {
   returnMockedJSON(res, 'assets/project-configuration.json');
 });
