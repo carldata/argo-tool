@@ -1,15 +1,15 @@
 import * as _ from 'lodash';
-import * as actionTypes from './action-types';
+import * as actionTypes from '@screens/project/action-types';
 import {
   FlowLoadSucceededAction,
-} from './actions';
-import { IProjectScreenState } from './models/project-screen-state';
+} from '@screens/project/actions';
+import { IProjectScreenState } from '@screens/project/models/project-screen-state';
 
 const initialState: IProjectScreenState = {
-  projectConfiguration: [],
-  projectCalculation: [],
+  projectConfigurations: [],
+  calculations: [],
   selectedDate: new Date(),
-  selectedFlowPredictionIndex: -1,
+  selectedCalculationIndex: -1,
 } as IProjectScreenState;
 
 export type ProjectScreenActionsTypes = FlowLoadSucceededAction;

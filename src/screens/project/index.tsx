@@ -5,9 +5,9 @@ import { IAppState } from '@store/state';
 import {
   showFlowPredictionForDay,
   IShowFlowPredictionForDayActionCreator,
-} from './action-creators';
+} from '@screens/project/action-creators';
 import { IUiSettings } from '@business-logic/configuration/models/ui-settings';
-import { IProjectScreenState } from './models';
+import { IProjectScreenState } from '@screens/project/models';
 import { GenericMessageModalContainer } from '@components/generic-message-modal';
 
 interface IScreenProps extends IProjectScreenState {
@@ -37,12 +37,12 @@ const mapDispatchToProps = (dispatch: Dispatch<void>) => {
   }, dispatch);
 };
 
-export { IProjectScreenState } from './models/project-screen-state';
-export { projectScreenReducer, ProjectScreenActionsTypes } from './reducers';
+export { IProjectScreenState } from '@screens/project/models/project-screen-state';
+export { projectScreenReducer, ProjectScreenActionsTypes } from '@screens/project/reducers';
 export {
   loadFlowSaga,
   loadRainfallSaga,
   loadPredictionSaga,
-} from './sagas';
+} from '@screens/project/sagas';
 
 export const ProjectScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(ProjectScreen);

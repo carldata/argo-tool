@@ -1,13 +1,10 @@
 import { IUnixTimePoint } from 'time-series-scroller';
-import { IProjectConfiguration } from './flow-prediction-configuration';
-import { IProjectCalculations } from '@screens/project/models/flow-prediction-calculations';
-
+import { ICalculations } from '@screens/project/models';
 
 export type ITimeSeries = IUnixTimePoint[];
 
 export interface IProjectScreenState {
-  projectConfiguration: IProjectConfiguration;
-  projectCalculation: IProjectCalculations;
+  calculations: ICalculations[];
   selectedDate: Date;
-  selectedFlowPredictionIndex: number;
+  selectedCalculationIndex: number;
 }
