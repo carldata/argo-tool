@@ -22,24 +22,31 @@ interface IDataGridHeader {
 export class DataGrid extends React.Component<IDataGridComponentProps, IDataGridComponentState> {
   constructor(props: IDataGridComponentProps, context: any) {
     super(props, context);
-    this.state = { selectedIndexes: [] };
+    this.state = { selectedIndexes: [0] };
   }
 
-  public shouldComponentUpdate(nextProps: IDataGridComponentProps) {
-    return ((_.size(this.props.rows) !== _.size(nextProps.rows)) || (JSON.stringify(this.props.columns) !== JSON.stringify(nextProps.columns)));
-  }
+  // public shouldComponentUpdate(nextProps: IDataGridComponentProps) {
+  //   return ((_.size(this.props.rows) !== _.size(nextProps.rows)) || (JSON.stringify(this.props.columns) !== JSON.stringify(nextProps.columns)));
+  // }
 
-  private onRowSelected = (rows) => {
-    // this.props.rowClicked(rows);
-    alert(rows);
+  private onRowSelected = (row) => {
+    const exists = _.includes(this.state.selectedIndexes, row);
+
+    if (exists) {
+      this.setState({ selectedIndexes: [] });
+    } else {
+      this.setState({ selectedIndexes: [row] });
+    }
   }
 
   private onRowsSelected = (rows) => {
-    //
+    const head = _.head(rows.map(r => r.rowIdx));
+    this.setState({ selectedIndexes: [head] });
   }
 
-  private onRowsDeselected = (rows) => {
-    //
+  private onRowsDeselected = (row) => {
+    let rowIndexes = row.map(r => r.rowIdx);
+    this.setState({ selectedIndexes: this.state.selectedIndexes.filter(i => rowIndexes.indexOf(i) === -1) });
   }
 
   public render() {
@@ -49,19 +56,19 @@ export class DataGrid extends React.Component<IDataGridComponentProps, IDataGrid
           columns={this.props.columns}
           rowGetter={(i: number) => this.props.rows[i]}
           rowsCount={this.props.rows.length}
-          minHeight={500}
+          minHeight={200}
           rowRenderer={RowRenderer}
           enableRowSelect='single'
           onRowClick={this.onRowSelected}
-          rowKey='rawValue'
+          // rowKey='rawValue'
           rowSelection={{
-            showCheckbox: false,
+            showCheckbox: true,
             enableShiftSelect: false,
             onRowsSelected: this.onRowsSelected,
             onRowsDeselected: this.onRowsDeselected,
             selectBy: {
               indexes: this.state.selectedIndexes,
-            }
+            },
           }} />
       </div>
     );
