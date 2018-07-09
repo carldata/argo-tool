@@ -53,10 +53,10 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
       .range([0, width])
       .domain(d3.extent(this.props.prediction.index));
 
-    const se = this.props.prediction;
+    const prediction = this.props.prediction;
 
-    const yMin = _.min(_.concat(se.prediction, se.flow));
-    const yMax = _.max(_.concat(se.prediction, se.flow));
+    const yMin = _.min(_.concat(prediction.prediction, prediction.flow));
+    const yMax = _.max(_.concat(prediction.prediction, prediction.flow));
 
     const flowY = d3.scaleLinear()
       .range([(1.0 - this.props.scss.rainfallToSignalsHeightRatio) * height, 0])
@@ -64,15 +64,15 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
 
     const rainY = d3.scaleLinear()
       .range([0, (this.props.scss.rainfallToSignalsHeightRatio * height) - this.props.scss.marginTopPx])
-      .domain(d3.extent(se.rainfall));
+      .domain(d3.extent(prediction.rainfall));
 
     const line = d3.line()
       .x((d: ISample<Date>) => time(d.index))
       .y((d: ISample<Date>) => flowY(d.value));
 
-    const flowData = convertToDateSignal(se.index, se.flow);
-    const predictionData = convertToDateSignal(se.index, se.prediction);
-    const rainfallData = convertToDateSignal(se.index, se.rainfall);
+    const flowData = convertToDateSignal(prediction.index, prediction.flow);
+    const predictionData = convertToDateSignal(prediction.index, prediction.prediction);
+    const rainfallData = convertToDateSignal(prediction.index, prediction.rainfall);
 
     singalsG
       .append('g')
@@ -117,7 +117,7 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
       .attr('fill', 'black')
       .attr('font-size', '11px')
       .attr('dy', '0.71em')
-      .text(`Flow ${this.props.flowIntensityUnits}`);
+      .text(`${this.props.flowIntensityUnits}`);
 
     rainG
       .append('g')
@@ -144,7 +144,7 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
   public render() {
     this.plotChart();
     return <svg
-      id='rdii-storm-events-chart'
+      id='prediction-chart'
       width={this.props.scss.widthPx}
       height={this.props.scss.heightPx}
       ref={(ref) => {

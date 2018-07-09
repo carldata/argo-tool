@@ -1,3 +1,3 @@
-export { IProjectScreenState, ITimeSeries } from './project-screen-state';
-export { ICalculations } from './calculations';
-export { ICalculationsConfiguration } from './calculations-configuration';
+export { IProjectScreenState, ITimeSeries } from '@screens/project/models/project-screen-state';
+export { ICalculations } from '@screens/project/models/calculations';
+export { ICalculationsConfiguration } from '@screens/project/models/calculations-configuration';
