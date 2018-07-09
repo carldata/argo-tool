@@ -1,0 +1,18 @@
+{
+  "projectId": "fc120ff8-fb22-490e-873a-99aa3e59aa9c",
+  "projectName": "Mocked project",
+  "predictionConfigs": [
+    { 
+      "flowChannelId": "7881-11742",
+      "flowChannelName": "Flow channel 7881-11742",
+      "rainfallChannelId": "3231-3048",
+      "rainfallChannelName": "Rainfall channel 3231-3048"
+    },
+    { 
+      "flowChannelId": "7881-11745",
+      "flowChannelName": "Flow channel 7881-11745",
+      "rainfallChannelId": "3231-3055",
+      "rainfallChannelName": "Rainfall channel 3231-3055"
+    }
+  ]
+}

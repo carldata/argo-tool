@@ -15,19 +15,23 @@ app.get('/static-csv/:name', (req, res) => {
 });
 
 app.get('/config/:appId', (req, res) => {
-  returnMockedJSON(res, 'assets/project-configuration.json');
+  returnMockedJSON(res, 'assets/json/project-configuration.json');
 });
 
 app.get('/config/:appId/:projectId', (req, res) => {
-  returnMockedJSON(res, 'assets/project-configuration.json');
+  returnMockedJSON(res, `assets/json/project-${req.params.projectId}.json`);
 });
 
 app.get('/data/channel/:channelId/data', (req, res) => {
-  returnMockedCsv(res, `assets/data-${req.params.channelId}.csv`);
+  returnMockedCsv(res, `assets/csv/${req.params.channelId}.data.csv`);
 });
 
 app.get('/anomalies/find', (req, res) => {
-  returnMockedCsv(res, `assets/find-${req.query.series}.csv`);
+  returnMockedCsv(res, `assets/csv/${req.query.flowChannelId}.anomalies.csv`);
+});
+
+app.get('/prediction/predict/:flowChannelId', (req, res) => {
+  returnMockedCsv(res, `assets/csv/${req.query.flowChannelId}.predictions.csv`);
 });
 
 app.get('/data/site/:siteId', (req, res) => {

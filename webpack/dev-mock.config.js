@@ -15,7 +15,7 @@ module.exports = merge(base, {
   ],
   devServer: {
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3900'
     },
     historyApiFallback: true,
     hot: true,
