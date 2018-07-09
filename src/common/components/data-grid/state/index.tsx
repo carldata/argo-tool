@@ -3,8 +3,7 @@ export interface IDataGridState {
 }
 
 export interface IDataGridRow {
-  channel: string;
-  prediction: number;
-  anomalies: number;
-  rainfall: number;
+  dailyPredictionError: number;
+  dailyAnomalies: number;
+  rainfallIntensity: number;
 }

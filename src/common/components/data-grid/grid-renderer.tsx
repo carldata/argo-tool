@@ -14,5 +14,5 @@ export class RowRenderer extends React.Component<IRowRendererProps> {
     </div>);
   }
   public getRowStyle = () => ({ color: 'black', cursor: 'pointer' });
-  public getRowBackground = () => this.props.row.anomalies == this.props.row.anomalies ? 'green' : 'red';
+  public getRowBackground = () => this.props.row.dailyAnomalies == this.props.row.dailyPredictionError ? 'green' : 'red';
 }
