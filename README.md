@@ -15,6 +15,26 @@ Install the latest version of TypeScript:
 npm i typescript -g
 ```
 
+To rebuild server (required only once to create /backless-development folder):
+```
+npm run bd-server-build
+```
+
+To start the server:
+```
+npm run bd-server-serve
+```
+
+Backless Server should be available at http://localhost:3900 
+
+**Warning !** Backless development is **required** to make JEST tests working !
+
+## Testing with JEST
+
+```
+npm run test
+```
+
 ## Storybook support
 
 **First installation**

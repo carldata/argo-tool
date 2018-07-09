@@ -28,8 +28,7 @@
     "testMatch": [
       "**/__tests__/unit/**.(ts|tsx|js)",
       "**/__tests__/schemas/**.(ts|tsx|js)"
-    ],
-    "preset": "jest-puppeteer-preset"
+    ]
   },
   "dependencies": {
     "axios": "0.18.0",
@@ -50,7 +49,7 @@
     "redux": "^3.7.0",
     "redux-saga": "0.16.0",
     "style-loader": "^0.18.2",
-    "time-series-scroller": "0.5.33",
+    "time-series-scroller": "0.5.36",
     "yup": "0.25.1"
   },
   "devDependencies": {

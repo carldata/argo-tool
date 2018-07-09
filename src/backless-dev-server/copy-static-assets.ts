@@ -1,3 +1,3 @@
 const shell = require('shelljs');
 
-shell.cp('-R', 'src/server/assets', 'backless-development/server');
+shell.cp('-R', './assets', 'backless-development/assets');
