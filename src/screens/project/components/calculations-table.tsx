@@ -25,15 +25,6 @@ export class CalculationsTable extends React.Component<ICalculationsTableProps> 
             rows={this.props.calculations}
             rowClicked={this.props.rowClicked} />
         </div>
-        <div>
-          <button
-            id='next'
-            type='button'
-            className='btn btn-primary'
-            onClick={() => { alert('going to next screen, but check if row selected'); }}>
-            Next Screen
-          </button>
-        </div>
       </div>
     );
   }
