@@ -5,15 +5,15 @@ import { storiesOf } from '@storybook/react';
 import { PredictionChartWrapper } from './prediction-chart-wrapper';
 
 storiesOf('Predictions Chart', module)
-  .add('Start of November 2013', () =>
+  .add('7881-11742 Flow, 3231-3048 Rainfall', () =>
     <PredictionChartWrapper
       flowIntensityUnits={'gpm'}
       rainfallUnits={'in'}
       scss={{
         predictionColor: 'green',
-        flowColor: 'blue',
-        widthPx: 1200,
-        heightPx: 600,
+        flowColor: 'orange',
+        widthPx: 800,
+        heightPx: 450,
         marginBottomPx: 50,
         marginTopPx: 50,
         marginLeftPx: 50,

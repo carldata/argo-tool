@@ -5,7 +5,8 @@ import axios, { AxiosResponse } from 'axios';
 import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
 import { IPrediction } from '@components/prediction-chart/models/prediction';
 import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
-import { IUnixTimePoint } from '../node_modules/time-series-scroller';
+import { IUnixTimePoint } from 'time-series-scroller';
+import { createPredictionFromTimeSeries } from '@screens/project/algorithms/create-prediction-from-time-series';
 
 export interface IPredictionChartWrapperProps {
   flowCsvName: string;
@@ -36,18 +37,9 @@ export class PredictionChartWrapper extends React.Component<IPredictionChartWrap
       .then((results) => {
         const [flowResult, predictionResult, rainfallResult] = results;
         const flowTimeSeries = convertCsvStringToTimeSeries(flowResult.data);
-        const predictionTimeSeries = convertCsvStringToTimeSeries(predictionResult.data);
+        const predictionTimeSeries = convertCsvStringToTimeSeries(predictionResult.data, 'time', 'mean');
         const rainfallTimeSeries = convertCsvStringToTimeSeries(rainfallResult.data);
-        const indexMapByFlow: Map<number, Date> = _.reduce<IUnixTimePoint[], Map<number, Date>>(flowTimeSeries, (acc, el) => acc, new Map<number, Date>());
-
-        this.setState({
-          prediction: {
-            index: _.toArray(indexMapByFlow.values),
-            flow: flowTimeSeries.map((el) => indexMapByFlow.has(el.unix) ? el.value : 0),
-            prediction: predictionTimeSeries.map((el) => indexMapByFlow.has(el.unix) ? el.value : 0),
-            rainfall: rainfallTimeSeries.map((el) => indexMapByFlow.has(el.unix) ? el.value : 0),
-          }
-        });
+        this.setState({ prediction: createPredictionFromTimeSeries(flowTimeSeries, predictionTimeSeries, rainfallTimeSeries)});
       });
   }
 
