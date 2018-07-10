@@ -2,7 +2,7 @@ import { fork } from 'redux-saga/effects';
 import { getConfiguarionSaga } from '@business-logic/configuration/sagas';
 import {
   loadProjectSaga,
-} from '@screens/select-project/sagas';
+} from '@screens/project/sagas';
 
 export function* mainSaga() {
   yield [
