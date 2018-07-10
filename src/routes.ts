@@ -1,4 +1,4 @@
 export const routes = {
-  SELECT_PROJECT: '/select',
-  PROJECT: '/project/:projectId',
+  SELECT_PROJECT: '/select-project',
+  PROJECT: '/show-project',
 };

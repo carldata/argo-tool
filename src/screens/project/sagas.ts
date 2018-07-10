@@ -26,7 +26,7 @@ export function* loadProjectSaga() {
       const projectResponse: AxiosResponse<IProject> = yield axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/config/${endpointSettings.appId}/${projectId}`);
       yield put(_.toPlainObject(new ProjectLoadSucceededAction(projectResponse.data)));
       yield put(_.toPlainObject(new HideGenericMessageModalAction()));
-      yield put(push(_.replace(routes.PROJECT, ':projectId', projectId)));
+      yield put(push((routes.PROJECT)));
     } catch (error) {
       yield handleErrorInSaga(error);
     }
@@ -77,8 +77,8 @@ export function* loadDataSaga() {
 
       const flowTimeSeries: ITimeSeries[] = flowResults.map((r) => convertCsvStringToTimeSeries(r.data));
       const rainfallTimeSeries: ITimeSeries[] = rainfallResults.map((r) => convertCsvStringToTimeSeries(r.data));
-      const anomaliesTimeSeries: ITimeSeries[] = anomaliesResults.map((r) => convertCsvStringToTimeSeries(r.data, 'time', 'mean'));
-      const predictionsTimeSeries: ITimeSeries[] = predictionsResults.map((r) => convertCsvStringToTimeSeries(r.data));
+      const anomaliesTimeSeries: ITimeSeries[] = anomaliesResults.map((r) => convertCsvStringToTimeSeries(r.data));
+      const predictionsTimeSeries: ITimeSeries[] = predictionsResults.map((r) => convertCsvStringToTimeSeries(r.data, 'time', 'mean'));
 
       if (endpointSettings.backlessDevelopment) {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
