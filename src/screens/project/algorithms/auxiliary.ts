@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as papa from 'papaparse';
+
 import { csvLoadingCalculations, EnumRawCsvFormat } from 'time-series-scroller';
 import { ITimeSeries } from '../models';
 
