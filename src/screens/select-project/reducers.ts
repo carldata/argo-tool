@@ -1,15 +1,12 @@
 import * as _ from 'lodash';
 import * as actionTypes from './action-types';
-import {
-  ProjectConfigurationLoadSucceededAction, ProjectSelectedAction,
-} from './actions';
+import { ProjectSelectedAction } from './actions';
 import { ISelectProjectScreenState } from './models/select-project-screen-state';
 import { IAppState } from '@store/state';
 
 const initialState: ISelectProjectScreenState = { projectId: '' } as ISelectProjectScreenState;
 
-export type SelectProjectScreenActionsTypes = ProjectSelectedAction|
-                                              ProjectConfigurationLoadSucceededAction;
+export type SelectProjectScreenActionsTypes = ProjectSelectedAction;
 
 export const selectProjectScreenReducer = (state: ISelectProjectScreenState = initialState, action: SelectProjectScreenActionsTypes): ISelectProjectScreenState => {
   switch (action.type) {

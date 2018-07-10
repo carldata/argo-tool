@@ -67,8 +67,5 @@ const mapDispatchToProps = (dispatch: Dispatch<void>) => {
 
 export { ISelectProjectScreenState } from './models';
 export { selectProjectScreenReducer, SelectProjectScreenActionsTypes } from './reducers';
-export {
-  loadProjectSaga,
-} from './sagas';
 
 export const SelectProjectScreenContainer = connect<IScreenProps, IDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(SelectProjectScreen);
