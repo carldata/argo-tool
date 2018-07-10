@@ -3,10 +3,10 @@ import * as React from 'react';
 import * as d3 from 'd3';
 import { IResizableScss, withFitToParent } from 'time-series-scroller';
 import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
-import { convertToDateSignal } from '@components/prediction-chart/calculations';
-import { plotLegend } from '@components/prediction-chart/plotting/legend-plotting';
-import { ISample } from '@components/prediction-chart/models/signal-sample';
-import { IPrediction } from '@components/prediction-chart/models/prediction';
+import { convertToDateSignal } from './calculations';
+import { plotLegend } from './plotting/legend-plotting';
+import { ISample } from './models/signal-sample';
+import { IPrediction } from './models/prediction';
 
 export { IPrediction };
 
@@ -21,7 +21,7 @@ export interface IPredictionScss extends IResizableScss {
   rainfallColor: string;
 }
 
-export interface IRdiiChartProps {
+export interface IPredictionChartProps {
   prediction: IPrediction<Date>;
   flowIntensityUnits: FlowIntensityUnits;
   rainfallUnits: RainfallUnits;
@@ -29,10 +29,10 @@ export interface IRdiiChartProps {
   refCallback?: (ref: any) => void;
 }
 
-class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
+class PredictionChartChartComponent extends React.Component<IPredictionChartProps> {
   private svgRef: SVGElement;
 
-  constructor(props: IRdiiChartProps) {
+  constructor(props: IPredictionChartProps) {
     super(props);
   }
 
@@ -155,4 +155,4 @@ class RdiiChartChartBase extends React.Component<IRdiiChartProps> {
   }
 }
 
-export const RdiiChart = withFitToParent<IRdiiChartProps>(RdiiChartChartBase);
+export const PredictionChart = withFitToParent<IPredictionChartProps>(PredictionChartChartComponent);

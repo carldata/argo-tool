@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { object, string, number, date, array } from 'yup';
-import { IPrediction } from '@components/prediction-chart';
+import { IPrediction } from '@screens/project/components/prediction-chart';
 
 const dateFromToSchema = object({
   from: date()
