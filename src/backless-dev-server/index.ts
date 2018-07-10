@@ -31,7 +31,7 @@ app.get('/anomalies/find', (req, res) => {
 });
 
 app.get('/prediction/predict/:flowChannelId', (req, res) => {
-  returnMockedCsv(res, `assets/csv/${req.query.flowChannelId}.predictions.csv`);
+  returnMockedCsv(res, `assets/csv/${req.params.flowChannelId}.predictions.csv`);
 });
 
 app.get('/data/site/:siteId', (req, res) => {

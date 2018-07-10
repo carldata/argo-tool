@@ -15,6 +15,10 @@ export interface IEndpointSettings {
    * Url to FlowWorks HTTP
    */
   flowWorksHttp: string;
+  /**
+   * If set to "true", the flowWorksHttp endpoint is deemed as a "backless development" server
+   */
+  backlessDevelopment: boolean;
 }
 
 export interface IConfigurationState {
