@@ -3,8 +3,7 @@ import { ITimeSeries } from '../models/index';
 import { csvLoadingCalculations, EnumRawCsvFormat, IUnixTimePoint } from 'time-series-scroller';
 import { convertCsvStringToTimeSeries } from './auxiliary';
 
-export const calculateNumberOfAnomalies = (flow: ITimeSeries|string, anomalies: ITimeSeries|string): number => {
-  const flowRows = _.isString(flow) ? convertCsvStringToTimeSeries(flow) : flow;
+export const calculateNumberOfAnomalies = (anomalies: ITimeSeries|string): number => {
   const anomaliesRows = _.isString(anomalies) ? convertCsvStringToTimeSeries(anomalies) : anomalies;
-  return -1;
+  return anomaliesRows.length;
 };
