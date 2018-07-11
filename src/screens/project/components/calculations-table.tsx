@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ICalculations } from '@screens/project/models';
-import { DataGrid } from '@components/data-grid';
+import { DataGrid } from './data-grid';
 
 export interface ICalculationsTableProps {
   calculations: ICalculations[];

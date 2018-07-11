@@ -1,5 +1,5 @@
 import { D3LegendGridLayout, ID3LegendConfig } from '@components/auxiliary/d3-legend-grid-layout';
-import { IPredictionScss } from '@components/prediction-chart';
+import { IPredictionScss } from '../index';
 
 export const plotLegend = (rootElement, rdiiScss: IPredictionScss) => {
   const gridLayout = new D3LegendGridLayout({

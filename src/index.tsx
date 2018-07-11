@@ -8,14 +8,15 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Redirect, Route } from 'react-router';
 import { ProjectScreenContainer } from '@screens/project';
 import { SelectProjectScreenContainer } from '@screens/select-project';
+import { routes } from '@routes';
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path='/' render={() => (<Redirect to='/select' />)} />
-        <Route path='/select' component={SelectProjectScreenContainer} />
-        <Route path='/project' component={ProjectScreenContainer} />
+        <Route exact path='/' render={() => (<Redirect to={`${routes.SELECT_PROJECT}`} />)} />
+        <Route path={`${routes.SELECT_PROJECT}`} component={SelectProjectScreenContainer} />
+        <Route path={`${routes.PROJECT}`} component={ProjectScreenContainer} />
       </div>
     </ConnectedRouter>
   </Provider>,

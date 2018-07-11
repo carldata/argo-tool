@@ -10,7 +10,7 @@ const initialState: IConfigurationState = {
   endpointSettings: {
     appId: '',
     flowWorksHttp: '',
-    dateFormat: '',
+    dateTimeFormat: '',
   },
 } as IConfigurationState;
 

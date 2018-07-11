@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
-import { ShowFlowPredictionForDayAction } from './actions';
+import { SelectedDateChangedAction } from './actions';
 
-export type IShowFlowPredictionForDayActionCreator = (day: Date) => ShowFlowPredictionForDayAction;
+export type ISelectedDateChangedActionCreator = (date: Date) => SelectedDateChangedAction;
 
-export const showFlowPredictionForDay: IShowFlowPredictionForDayActionCreator = (day: Date) =>
-  _.toPlainObject(new ShowFlowPredictionForDayAction(day));
+export const selectedDateChanged: ISelectedDateChangedActionCreator = (date: Date) =>
+  _.toPlainObject(new SelectedDateChangedAction(date));

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { IUnixTimePoint } from 'time-series-scroller';
-import { IPrediction } from '@components/prediction-chart';
 import { ITimeSeries } from '@screens/project/models';
+import { IPrediction } from '@screens/project/components/prediction-chart';
 
 export const createPredictionFromTimeSeries = (flowTimeSeries: ITimeSeries, predictionTimeSeries: ITimeSeries, rainfallTimeSeries: ITimeSeries): IPrediction<Date> => {
   const flowMap: Map<number, number> = _.reduce<IUnixTimePoint[], Map<number, number>>(

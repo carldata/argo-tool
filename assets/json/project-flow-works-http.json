@@ -1,0 +1,18 @@
+{
+  "projectId": "a4f177e5-ebd8-4acd-9113-843f2ecae9cb",
+  "projectName": "Project for demo",
+  "predictionConfigs": [
+    { 
+      "flowChannelId": "7880-11732",
+      "flowChannelName": "Flow 1",
+      "rainfallChannelId": "7883-14236",
+      "rainfallChannelName": "Rainfall"
+    },
+    { 
+      "flowChannelId": "7881-11742",
+      "flowChannelName": "Flow 2",
+      "rainfallChannelId": "7883-14236",
+      "rainfallChannelName": "Rainfall"
+    }
+  ]
+}

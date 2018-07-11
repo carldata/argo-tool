@@ -2,6 +2,7 @@
   "enable": false,
   "extends": "tslint:recommended",  
   "rules": {
+    "array-type": [true, "array"],
     "eofline": false,
     "max-line-length": {
       "options": [180]

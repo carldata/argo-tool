@@ -8,5 +8,4 @@ export interface IProjectScreenState {
   project: IProject;
   calculations: ICalculations[];
   selectedDate: Date;
-  selectedCalculationIndex: number;
 }

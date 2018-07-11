@@ -1,12 +1,11 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import { RdiiChart, IPredictionScss } from '@components/prediction-chart';
 import axios, { AxiosResponse } from 'axios';
-import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
-import { IPrediction } from '@components/prediction-chart/models/prediction';
-import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
 import { IUnixTimePoint } from 'time-series-scroller';
+import { FlowIntensityUnits, RainfallUnits } from '@components/auxiliary/units';
+import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
 import { createPredictionFromTimeSeries } from '@screens/project/algorithms/create-prediction-from-time-series';
+import { IPredictionScss, IPrediction, PredictionChart } from '@screens/project/components/prediction-chart';
 
 export interface IPredictionChartWrapperProps {
   flowCsvName: string;
@@ -45,7 +44,7 @@ export class PredictionChartWrapper extends React.Component<IPredictionChartWrap
 
   public render() {
     return _.isObject(this.state.prediction) ?
-      <RdiiChart {...this.props} prediction={this.state.prediction} /> :
+      <PredictionChart {...this.props} prediction={this.state.prediction} /> :
       <div>Is loading</div>;
   }
 }

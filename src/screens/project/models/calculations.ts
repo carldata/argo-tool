@@ -5,7 +5,8 @@ export interface ICalculations extends ICalculationsConfiguration {
   dailyPredictionError: number;
   dailyAnomalies: number;
   rainfallIntensity: number;
-  rainfallData: ITimeSeries;
-  flowData: ITimeSeries;
-  predictionData: ITimeSeries;
+  rainfallTimeSeries: ITimeSeries;
+  flowTimeSeries: ITimeSeries;
+  predictionTimeSeries: ITimeSeries;
+  anomaliesTimeSeries: ITimeSeries;
 }
