@@ -23,32 +23,34 @@ class SelectProjectScreen extends React.Component<IScreenProps & IDispatchProps,
   constructor(props: IScreenProps & IDispatchProps) {
     super(props);
     this.state = {
-      projectId: 'fc120ff8-fb22-490e-873a-99aa3e59aa9c',
+      projectId: '',
     }
   }
 
   public render() {
     return <div>
       <h5>Select project screen</h5>
-      <div className='input-group'>
-        <label htmlFor='basic-url'>Enter secret project ID:</label>
-        &nbsp;
-        <input
-          id='projectId'
-          type='text'
-          placeholder=''
-          value={this.state.projectId}
-          onChange={(e) => this.setState({ projectId: e.currentTarget.value }) }
-        />
-        &nbsp;
-        <button
-          type='button'
-          className='btn btn-primary'
-          value=''
-          onClick={() => this.props.selectProject(this.state.projectId)}>
-          Navigate !
-        </button>
-      </div>
+      <form className='form-inline'>
+        <div className='input-group'>
+          <label htmlFor='basic-url'>Enter secret project ID:</label>
+          &nbsp;
+          <input
+            id='projectId'
+            type='text'
+            style={{width: 400}}
+            value={this.state.projectId}
+            onChange={(e) => this.setState({ projectId: e.currentTarget.value }) }
+          />
+          &nbsp;
+          <button
+            type='button'
+            className='btn btn-primary'
+            value=''
+            onClick={() => this.props.selectProject(this.state.projectId)}>
+            Navigate !
+          </button>
+        </div>
+      </form>
       <GenericMessageModalContainer />
     </div>;
   }

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import * as _ from 'lodash';
+import * as dateFns from 'date-fns';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { IAppState } from '@store/state';
 import {
-  showFlowPredictionForDay,
-  IShowFlowPredictionForDayActionCreator,
-} from '@screens/project/action-creators';
+  ISelectedDateChangedActionCreator,
+  selectedDateChanged,
+} from './action-creators';
 import { GenericMessageModalContainer } from '@components/generic-message-modal';
 import { IUiSettings } from '@business-logic/configuration/models/ui-settings';
 import { IProjectScreenState } from './models';
@@ -19,17 +20,21 @@ interface IScreenProps extends IProjectScreenState {
 }
 
 interface IScreenState {
+  date: Date;
   prediction: IPrediction<Date>;
 }
 
 interface IDispatchProps {
-  showFlowPredictionForDay: IShowFlowPredictionForDayActionCreator;
+  selectedDateChanged: ISelectedDateChangedActionCreator;
 }
 
 export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps, IScreenState> {
   constructor(props: IScreenProps & IDispatchProps) {
     super(props);
-    this.state = { prediction: null };
+    this.state = {
+      date: new Date(),
+      prediction: null,
+    };
   }
 
   public componentWillReceiveProps(nextProps: IScreenProps) {
@@ -47,6 +52,16 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
     return <div>
       <h5>Project Screen</h5>
       <form>
+        <div className='form-group'>
+          <label>Selected date:</label>
+          <input
+            type='date'
+            onChange={(e) => {
+              this.setState({ date: dateFns.parse(e.currentTarget.value) });
+              this.props.selectedDateChanged(dateFns.parse(e.currentTarget.value));
+            }}
+            value={dateFns.format(this.state.date, 'YYYY-MM-DD')} />
+        </div>
         <div className='form-group'>
           <DataGrid
             columns={[
@@ -101,7 +116,7 @@ const mapStateToProps = (state: IAppState): IScreenProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => {
   return bindActionCreators({
-    showFlowPredictionForDay,
+    selectedDateChanged,
   }, dispatch);
 };
 

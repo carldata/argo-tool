@@ -17,9 +17,9 @@ export class ProjectLoadSucceededAction implements Action {
   constructor(public project: IProject) { }
 }
 
-export class ShowFlowPredictionForDayAction implements Action {
-  public readonly type = actionTypes.SHOW_FLOW_PREDICTION_FOR_DAY;
-  constructor(public day: Date) { }
+export class SelectedDateChangedAction implements Action {
+  public readonly type = actionTypes.SELECTED_DATE_CHANGED;
+  constructor(public date: Date) { }
 }
 
 export class TimeSeriesLoadStartedAction implements Action {

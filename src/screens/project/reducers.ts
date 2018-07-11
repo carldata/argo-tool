@@ -1,10 +1,12 @@
 import * as _ from 'lodash';
 import * as actionTypes from '@screens/project/action-types';
 import {
-  ProjectLoadSucceededAction, TimeSeriesLoadStartedAction, TimeSeriesLoadSucceededAction,
+  ProjectLoadSucceededAction, TimeSeriesLoadStartedAction, TimeSeriesLoadSucceededAction, SelectedDateChangedAction,
 } from './actions';
-import { IProjectScreenState } from '@screens/project/models/project-screen-state';
-import { ICalculations } from '@screens/project/models';
+import { IProjectScreenState, ICalculations } from './models';
+import { calculateNumberOfAnomalies } from './algorithms/number-of-anomalies';
+import { calculatePredictionError } from './algorithms/prediction-error';
+import { calculateRainfallIntensity } from './algorithms/rainfall-intensity';
 
 const initialState: IProjectScreenState = {
   project: null,
@@ -15,7 +17,8 @@ const initialState: IProjectScreenState = {
 } as IProjectScreenState;
 
 export type ProjectScreenActionsTypes = ProjectLoadSucceededAction|
-                                        TimeSeriesLoadSucceededAction;
+                                        TimeSeriesLoadSucceededAction|
+                                        SelectedDateChangedAction;
 
 export const projectScreenReducer = (state: IProjectScreenState = initialState, action: ProjectScreenActionsTypes): IProjectScreenState => {
   switch (action.type) {
@@ -38,12 +41,14 @@ export const projectScreenReducer = (state: IProjectScreenState = initialState, 
             rainfallTimeSeries: r[2],
             anomaliesTimeSeries: r[3],
             predictionTimeSeries: r[4],
-            dailyAnomalies: -1,
-            dailyPredictionError: -1,
-            rainfallIntensity: -1,
+            dailyAnomalies: calculateNumberOfAnomalies(r[1], r[3]),
+            dailyPredictionError: calculatePredictionError(r[1], r[4]),
+            rainfallIntensity: calculateRainfallIntensity(r[2]),
           }
         )),
       };
+    case actionTypes.SELECTED_DATE_CHANGED:
+      return { ...state, selectedDate: action.date };
     default:
       return state;
   }
