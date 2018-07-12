@@ -4,14 +4,14 @@ import axios from 'axios';
 import { calculateRainfallIntensity } from '../../src/screens/project/algorithms/rainfall-intensity';
 
 describe('rainfall intensity with 1h rolling window', () => {
-  it('should be greater than 0', (done) => {
-    axios.get('http://localhost:3900/static-csv/3231-3048.rainfall.csv').then((response) => { 
+  it('should equal to 6.3500000000000005', (done) => {
+    axios.get('http://localhost:3900/static-csv/3231-3048.rainfall.csv').then((response) => {
       const intensity = calculateRainfallIntensity(response.data);
-      expect(intensity).toBeGreaterThan(0);
+      expect(intensity).toEqual(6.3500000000000005);
       done();
     });
   });
-  it('result should to be equal 7', () => {
+  it('should equal 7', () => {
 
     const input = `time,value
     2018-01-01T00:00:00,0.0
