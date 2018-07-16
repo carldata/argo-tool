@@ -41,7 +41,7 @@ export const projectScreenReducer = (state: IProjectScreenState = initialState, 
             rainfallTimeSeries: r[2],
             anomaliesTimeSeries: r[3],
             predictionTimeSeries: r[4],
-            dailyAnomalies: calculateNumberOfAnomalies(r[1], r[3]),
+            dailyAnomalies: calculateNumberOfAnomalies(r[3]),
             dailyPredictionError: calculatePredictionError(r[1], r[4]),
             rainfallIntensity: calculateRainfallIntensity(r[2]),
           }
