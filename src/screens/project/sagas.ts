@@ -14,6 +14,7 @@ import { ShowGenericMessageModalAction, HideGenericMessageModalAction } from '@c
 import { ProjectLoadStartedAction, ProjectLoadSucceededAction, TimeSeriesLoadSucceededAction, TimeSeriesLoadStartedAction } from './actions';
 import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
 import { ITimeSeries } from '@screens/project/models';
+import Axios from 'axios';
 
 export function* loadProjectSaga() {
   while (true) {
@@ -54,22 +55,26 @@ export function* loadDataSaga() {
       const httpQueryDateTo = dateFns.addMinutes(dateFns.startOfDay(date), (24 * 60) + 30);
 
       const endpointSettings: IEndpointSettings = yield select((state: IAppState) => state.configuration.endpointSettings);
+
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRwaWNobGFrIiwibmJmIjoxNTMzNzA4NjA4LCJleHAiOjE1MzM3MTU4MDgsImlhdCI6MTUzMzcwODYwOCwiaXNzIjoiRlcifQ.WHUke1tv5odMVY_7_gNHGvx_aTirpMdvmaIpQwmysXw';
+
       const flowPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/data/channel/${c.flowChannelId}/data?` +
-                                           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-                                           `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
       const rainfallPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/data/channel/${c.rainfallChannelId}/data?` +
-                                           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-                                           `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
       const anomaliesPromises = project.predictionConfigs.map((c) =>
-        axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/anomalies/find?flowChannelId=${c.flowChannelId}&` +
-                                           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-                                           `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+        axios.get<AxiosResponse<IProject>>(
+          `${endpointSettings.flowWorksHttp}/anomalies/find?editedFlowChannelId=${c.editedChannelId}&rawFlowChannelId=${c.flowChannelId}&rainfallChannelId=${c.rainfallChannelId}&` +
+          `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}&token=${token}`));
       const predictionsPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/prediction/predict/${c.flowChannelId}?` +
-                                           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-                                           `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
       const flowResults: AxiosResponse<string>[] = yield Promise.all(flowPromises);
       const rainfallResults: AxiosResponse<string>[] = yield Promise.all(rainfallPromises);
       const anomaliesResults: AxiosResponse<string>[] = yield Promise.all(anomaliesPromises);
@@ -82,16 +87,16 @@ export function* loadDataSaga() {
 
       if (endpointSettings.backlessDevelopment) {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
-                                                                    flowTimeSeries,
-                                                                    rainfallTimeSeries,
-                                                                    anomaliesTimeSeries,
-                                                                    predictionsTimeSeries)));
+          flowTimeSeries,
+          rainfallTimeSeries,
+          anomaliesTimeSeries,
+          predictionsTimeSeries)));
       } else {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
-                                                                    postFilterResults(date, flowTimeSeries),
-                                                                    postFilterResults(date, rainfallTimeSeries),
-                                                                    postFilterResults(date, anomaliesTimeSeries),
-                                                                    postFilterResults(date, predictionsTimeSeries))));
+          postFilterResults(date, flowTimeSeries),
+          postFilterResults(date, rainfallTimeSeries),
+          postFilterResults(date, anomaliesTimeSeries),
+          postFilterResults(date, predictionsTimeSeries))));
       }
 
       yield put(_.toPlainObject(new HideGenericMessageModalAction()));
