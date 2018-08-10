@@ -13,8 +13,7 @@ import { handleErrorInSaga } from '../../common/handle-error-in-saga';
 import { ShowGenericMessageModalAction, HideGenericMessageModalAction } from '@components/generic-message-modal';
 import { ProjectLoadStartedAction, ProjectLoadSucceededAction, TimeSeriesLoadSucceededAction, TimeSeriesLoadStartedAction } from './actions';
 import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
-import { ITimeSeries } from '@screens/project/models';
-import Axios from 'axios';
+import { ITimeSeries, IProjectScreenState } from '@screens/project/models';
 import { getCookie } from '../../common/cookie-auxiliary';
 import { checkResponseForError } from '../../common/response-error-checking';
 
@@ -48,6 +47,12 @@ export function* loadDataSaga() {
   while (true) {
     yield take([PROJECT_LOAD_SUCCEEDED, SELECTED_DATE_CHANGED]);
     try {
+      const projectScreenState: IProjectScreenState = yield select((state: IAppState) => state.projectScreenState);
+      if (_.isUndefined(projectScreenState.project) || _.isNull(projectScreenState.project)) {
+        yield put(push(routes.SELECT_PROJECT));
+        return;
+      }
+
       yield put(_.toPlainObject(new ShowGenericMessageModalAction()));
       yield put(_.toPlainObject(new TimeSeriesLoadStartedAction()));
 

@@ -1,5 +1,5 @@
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { ReducersMapObject, combineReducers, compose, Store, createStore, applyMiddleware } from 'redux';
 import { IAppState } from '@store/state';
 import { IConfigurationState, ConfigurationActionTypes, configurationReducer } from '@business-logic/configuration';
@@ -16,6 +16,7 @@ interface ICombinedReducers extends ReducersMapObject {
   configuration: (state: IConfigurationState, action: ConfigurationActionTypes) => IConfigurationState;
   selectProjectScreenState: (state: ISelectProjectScreenState, action: SelectProjectScreenActionsTypes) => ISelectProjectScreenState;
   projectScreenState: (state: IProjectScreenState, action: ProjectScreenActionsTypes) => IProjectScreenState;
+  routing: any;
 }
 
 const reducerMapObject: ICombinedReducers = {
@@ -23,6 +24,7 @@ const reducerMapObject: ICombinedReducers = {
   configuration: configurationReducer,
   selectProjectScreenState: selectProjectScreenReducer,
   projectScreenState: projectScreenReducer,
+  routing: routerReducer,
 };
 
 const combinedReducers = combineReducers<IAppState>(reducerMapObject);
