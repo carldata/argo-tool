@@ -97,14 +97,15 @@ export function* loadDataSaga() {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
           flowTimeSeries,
           rainfallTimeSeries,
+          predictionsTimeSeries,
           anomaliesTimeSeries,
-          predictionsTimeSeries)));
+          )));
       } else {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
           postFilterResults(date, flowTimeSeries),
           postFilterResults(date, rainfallTimeSeries),
-          postFilterResults(date, anomaliesTimeSeries),
-          postFilterResults(date, predictionsTimeSeries))));
+          postFilterResults(date, predictionsTimeSeries),
+          postFilterResults(date, anomaliesTimeSeries))));
       }
 
       yield put(_.toPlainObject(new HideGenericMessageModalAction()));

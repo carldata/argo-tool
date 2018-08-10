@@ -38,14 +38,14 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
   }
 
   public componentWillReceiveProps(nextProps: IScreenProps) {
-    if ((JSON.stringify(this.props.calculations) !== JSON.stringify(nextProps.calculations)) && (!_.isEmpty(nextProps.calculations))) {
+    // if ((JSON.stringify(this.props.calculations) !== JSON.stringify(nextProps.calculations)) && (!_.isEmpty(nextProps.calculations))) {
       this.setState({
         prediction: createPredictionFromTimeSeries(
           _.first(nextProps.calculations).flowTimeSeries,
           _.first(nextProps.calculations).predictionTimeSeries,
           _.first(nextProps.calculations).rainfallTimeSeries),
       });
-    }
+    // }
   }
 
   public render() {
