@@ -15,6 +15,8 @@ import { ProjectLoadStartedAction, ProjectLoadSucceededAction, TimeSeriesLoadSuc
 import { convertCsvStringToTimeSeries } from '@screens/project/algorithms/auxiliary';
 import { ITimeSeries } from '@screens/project/models';
 import Axios from 'axios';
+import { getCookie } from '../../common/cookie-auxiliary';
+import { checkResponseForError } from '../../common/response-error-checking';
 
 export function* loadProjectSaga() {
   while (true) {
@@ -56,7 +58,7 @@ export function* loadDataSaga() {
 
       const endpointSettings: IEndpointSettings = yield select((state: IAppState) => state.configuration.endpointSettings);
 
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRwaWNobGFrIiwibmJmIjoxNTMzNzA4NjA4LCJleHAiOjE1MzM3MTU4MDgsImlhdCI6MTUzMzcwODYwOCwiaXNzIjoiRlcifQ.WHUke1tv5odMVY_7_gNHGvx_aTirpMdvmaIpQwmysXw';
+      const token = getCookie('fw_jwt');
 
       const flowPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/data/channel/${c.flowChannelId}/data?` +
@@ -75,15 +77,16 @@ export function* loadDataSaga() {
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/prediction/predict/${c.flowChannelId}?` +
           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
           `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
-      const flowResults: AxiosResponse<string>[] = yield Promise.all(flowPromises);
-      const rainfallResults: AxiosResponse<string>[] = yield Promise.all(rainfallPromises);
-      const anomaliesResults: AxiosResponse<string>[] = yield Promise.all(anomaliesPromises);
-      const predictionsResults: AxiosResponse<string>[] = yield Promise.all(predictionsPromises);
 
-      const flowTimeSeries: ITimeSeries[] = flowResults.map((r) => convertCsvStringToTimeSeries(r.data));
-      const rainfallTimeSeries: ITimeSeries[] = rainfallResults.map((r) => convertCsvStringToTimeSeries(r.data));
-      const anomaliesTimeSeries: ITimeSeries[] = anomaliesResults.map((r) => convertCsvStringToTimeSeries(r.data));
-      const predictionsTimeSeries: ITimeSeries[] = predictionsResults.map((r) => convertCsvStringToTimeSeries(r.data, 'time', 'mean'));
+      const flowResults: string[] = _.map(yield Promise.all(flowPromises), (resp) => checkResponseForError(resp.data));
+      const rainfallResults: string[] = _.map(yield Promise.all(rainfallPromises), (resp) => checkResponseForError(resp.data));
+      const anomaliesResults: string[] = _.map(yield Promise.all(anomaliesPromises), (resp) => checkResponseForError(resp.data));
+      const predictionsResults: string[] = _.map(yield Promise.all(predictionsPromises), (resp) => checkResponseForError(resp.data));
+
+      const flowTimeSeries: ITimeSeries[] = flowResults.map((r) => convertCsvStringToTimeSeries(r));
+      const rainfallTimeSeries: ITimeSeries[] = rainfallResults.map((r) => convertCsvStringToTimeSeries(r));
+      const anomaliesTimeSeries: ITimeSeries[] = anomaliesResults.map((r) => convertCsvStringToTimeSeries(r));
+      const predictionsTimeSeries: ITimeSeries[] = predictionsResults.map((r) => convertCsvStringToTimeSeries(r, 'time', 'mean'));
 
       if (endpointSettings.backlessDevelopment) {
         yield put(_.toPlainObject(new TimeSeriesLoadSucceededAction(project.predictionConfigs,
