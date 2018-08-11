@@ -29,5 +29,5 @@ export const calculatePredictionError = (flow: ITimeSeries|string, predictions: 
       n: 0, // number of t's,
     });
 
-  return mape.n > 0 ? 100.0 * mape.sum / mape.n : -1;
+  return mape.n > 0 ? 100.0 * mape.sum / mape.n : 0;
 };

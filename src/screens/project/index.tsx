@@ -39,12 +39,12 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
 
   public componentWillReceiveProps(nextProps: IScreenProps) {
     // if ((JSON.stringify(this.props.calculations) !== JSON.stringify(nextProps.calculations)) && (!_.isEmpty(nextProps.calculations))) {
-      this.setState({
-        prediction: createPredictionFromTimeSeries(
-          _.first(nextProps.calculations).flowTimeSeries,
-          _.first(nextProps.calculations).predictionTimeSeries,
-          _.first(nextProps.calculations).rainfallTimeSeries),
-      });
+    this.setState({
+      prediction: createPredictionFromTimeSeries(
+        _.first(nextProps.calculations).flowTimeSeries,
+        _.first(nextProps.calculations).predictionTimeSeries,
+        _.first(nextProps.calculations).rainfallTimeSeries),
+    });
     // }
   }
 
@@ -57,10 +57,12 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
           <input
             type='date'
             onChange={(e) => {
-              this.setState({ date: dateFns.parse(e.currentTarget.value) });
-              this.props.selectedDateChanged(dateFns.parse(e.currentTarget.value));
+              this.setState({ date: dateFns.parse(e.target.value) });
+              this.props.selectedDateChanged(this.state.date);
             }}
-            value={dateFns.format(this.state.date, 'YYYY-MM-DD')} />
+            onKeyDown={(e) => false}
+            value={dateFns.format(this.state.date, 'YYYY-MM-DD')}
+            />
         </div>
         <div className='form-group'>
           <DataGrid
@@ -80,7 +82,7 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
                   this.props.calculations[index].predictionTimeSeries,
                   this.props.calculations[index].rainfallTimeSeries),
               });
-            } } />
+            }} />
         </div>
         <div className='form-group'>
           {_.isObject(this.state.prediction) && <PredictionChart
