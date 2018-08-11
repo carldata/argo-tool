@@ -15,7 +15,6 @@ module.exports = merge(base, {
      }),
     new CopyWebpackPlugin([
       { from: './assets/json/config/dev.json', to: 'configuration.json', dot: true },
-      { from: './assets/json/projects.json' },
     ], { copyUnmodified: true })
   ]
 });

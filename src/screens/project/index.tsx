@@ -57,8 +57,8 @@ export class ProjectScreen extends React.Component<IScreenProps & IDispatchProps
           <input
             type='date'
             onChange={(e) => {
-              this.setState({ date: dateFns.parse(e.target.value) });
-              this.props.selectedDateChanged(this.state.date);
+              this.setState({ date: dateFns.parse(e.currentTarget.value) });
+              this.props.selectedDateChanged(dateFns.parse(e.currentTarget.value));
             }}
             onKeyDown={(e) => false}
             value={dateFns.format(this.state.date, 'YYYY-MM-DD')}
