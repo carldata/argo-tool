@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as dateFns from 'date-fns';
 import axios, { AxiosResponse } from 'axios';
 import { push } from 'react-router-redux';
-import { select, put, take } from 'redux-saga/effects';
+import { select, put, race, take } from 'redux-saga/effects';
 import { PROJECT_LOAD_SUCCEEDED, SELECTED_DATE_CHANGED } from './action-types';
 import { PROJECT_SELECTED } from '@screens/select-project/action-types';
 import { IAppState } from '@store/state';
@@ -23,9 +23,11 @@ export function* loadProjectSaga() {
     try {
       yield put(_.toPlainObject(new ShowGenericMessageModalAction()));
       yield put(_.toPlainObject(new ProjectLoadStartedAction()));
+      const token = getCookie('fw_jwt');
       const endpointSettings: IEndpointSettings = yield select((state: IAppState) => state.configuration.endpointSettings);
       const projectId: string = yield select((state: IAppState) => state.selectProjectScreenState.projectId);
-      const projectResponse: AxiosResponse<IProject> = yield axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/config/${endpointSettings.appId}/${projectId}`);
+      const projectResponse: AxiosResponse<IProject> = yield axios.get<AxiosResponse<IProject>>(
+        `${endpointSettings.flowWorksHttp}/config/${endpointSettings.appId}/${projectId}?token=${token}`);
       yield put(_.toPlainObject(new ProjectLoadSucceededAction(projectResponse.data)));
       yield put(push((routes.PROJECT)));
     } catch (error) {
@@ -46,13 +48,8 @@ const postFilterResults = (date: Date, series: ITimeSeries[]): ITimeSeries[] => 
 export function* loadDataSaga() {
   while (true) {
     yield take([PROJECT_LOAD_SUCCEEDED, SELECTED_DATE_CHANGED]);
-    try {
-      const projectScreenState: IProjectScreenState = yield select((state: IAppState) => state.projectScreenState);
-      if (_.isUndefined(projectScreenState.project) || _.isNull(projectScreenState.project)) {
-        yield put(push(routes.SELECT_PROJECT));
-        return;
-      }
 
+    try {
       yield put(_.toPlainObject(new ShowGenericMessageModalAction()));
       yield put(_.toPlainObject(new TimeSeriesLoadStartedAction()));
 
@@ -68,11 +65,11 @@ export function* loadDataSaga() {
       const flowPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/data/channel/${c.flowChannelId}/data?` +
           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}&token=${token}`));
       const rainfallPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/data/channel/${c.rainfallChannelId}/data?` +
           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}&token=${token}`));
       const anomaliesPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(
           `${endpointSettings.flowWorksHttp}/anomalies/find?editedFlowChannelId=${c.editedChannelId}&rawFlowChannelId=${c.flowChannelId}&rainfallChannelId=${c.rainfallChannelId}&` +
@@ -81,7 +78,7 @@ export function* loadDataSaga() {
       const predictionsPromises = project.predictionConfigs.map((c) =>
         axios.get<AxiosResponse<IProject>>(`${endpointSettings.flowWorksHttp}/prediction/predict/${c.flowChannelId}?` +
           `startDate=${dateFns.format(httpQueryDateFrom, endpointSettings.dateTimeFormat)}&` +
-          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}`));
+          `endDate=${dateFns.format(httpQueryDateTo, endpointSettings.dateTimeFormat)}&token=${token}`));
 
       const flowResults: string[] = _.map(yield Promise.all(flowPromises), (resp) => checkResponseForError(resp.data));
       const rainfallResults: string[] = _.map(yield Promise.all(rainfallPromises), (resp) => checkResponseForError(resp.data));
