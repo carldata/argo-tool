@@ -61,3 +61,6 @@ typings/
 .next
 backless-development/
 storybook-static/
+
+dist/
+docker_build.sh

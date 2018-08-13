@@ -5,12 +5,16 @@
     { 
       "flowChannelId": "7880-11732",
       "flowChannelName": "Flow 1",
+      "editedChannelId": "7880-11734",
+      "editedChannelName": "MP1 DFINAL",
       "rainfallChannelId": "7883-14236",
       "rainfallChannelName": "Rainfall"
     },
     { 
       "flowChannelId": "7881-11742",
       "flowChannelName": "Flow 2",
+      "editedChannelId": "7881-11744",
+      "editedChannelName": "MP1 DFINAL",
       "rainfallChannelId": "7883-14236",
       "rainfallChannelName": "Rainfall"
     }
