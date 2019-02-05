@@ -2,7 +2,7 @@
   "endpointSettings": {
     "dateTimeFormat":  "YYYY-MM-DDTHH:mm:ss",
     "appId": "argo-tool-20180711",
-    "flowWorksHttp": "http://13.77.168.238",
+    "flowWorksHttp": "http://52.183.15.185",
     "backlessDevelopment": false
   },
   "uiSettings": {
